@@ -1,0 +1,21 @@
+
+name: financial_analyst_env
+channels:
+- conda-forge
+- defaults
+dependencies:
+#Depndencies for postgresql database
+  - python=3.8
+  - pandas
+  - sqlalchemy
+  - psycopg2
+  - python-dotenv
+  - pyyaml
+  - jupyter
+  - alembic
+  - ipython
+  - postgresql
+
+#Additional tools
+  - pip
+  - pyhon-dotenv
