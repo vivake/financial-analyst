@@ -1,0 +1,1 @@
+# Load cleaned filings to vector db

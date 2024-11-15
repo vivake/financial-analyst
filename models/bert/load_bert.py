@@ -1,0 +1,1 @@
+# Load BERT model and tokenizer to be used for handling query

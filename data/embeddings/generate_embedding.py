@@ -1,0 +1,1 @@
+# Generate embeddings for the cleaned sec filings data using finbert
