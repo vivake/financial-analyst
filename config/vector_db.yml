@@ -1,0 +1,6 @@
+ # Vector database-specific configurations (Contains configuration data, no class here)
+astra_db:
+  # The API endpoint for the Astra DB
+  api_endpoint: "${ASTRA_DB_API_ENDPOINT}"
+  # The application token for the Astra DB
+  application_token: "${ASTRA_DB_APPLICATION_TOKEN}"

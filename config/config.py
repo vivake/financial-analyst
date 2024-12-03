@@ -1,0 +1,1 @@
+ # Class for managing the configuration

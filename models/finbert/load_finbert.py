@@ -1,3 +1,5 @@
+# Class to load and initialize FinBERT model
+
 from transformers import AutoTokenizer, AutoModel
 import os
 from dotenv import load_dotenv

@@ -1,1 +1,0 @@
-# SQL specific retrieval functions

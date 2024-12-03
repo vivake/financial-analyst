@@ -1,3 +1,5 @@
+# Class for vector database connection setup
+
 import os
 from dotenv import load_dotenv
 import logging
