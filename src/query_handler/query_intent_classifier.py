@@ -1,1 +1,0 @@
-# Pre-trained model (BERT) for intent classification of the query

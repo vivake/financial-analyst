@@ -1,0 +1,1 @@
+# Class for data transformation logic

@@ -1,8 +1,6 @@
+# Class for SQL database connection setup
+
 #Create and connect to sql db for sec filings. 
-
-    #Empty for testing purposes.
-
-# src/databases/sec_filings_sql_db/test_connection.py
 
 from sqlalchemy import create_engine
 from dotenv import load_dotenv

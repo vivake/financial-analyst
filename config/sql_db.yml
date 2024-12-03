@@ -1,0 +1,7 @@
+ # SQL database-specific configurations (Contains configuration data, no class here)
+database:
+  host: ${DB_HOST}
+  port: ${DB_PORT}
+  name: ${DB_NAME}
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
