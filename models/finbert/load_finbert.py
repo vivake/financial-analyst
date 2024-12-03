@@ -22,7 +22,16 @@ def load_finbert():
     model = AutoModel.from_pretrained("ProsusAI/finbert", token=finbert_huggingface_token)
     return tokenizer, model
 
-# Example usage
+# Example usage. Load the FinBERT model and tokenizer, and add to collection
 if __name__ == "__main__":
     tokenizer, model = load_finbert()
     print("FinBERT model and tokenizer loaded successfully.")
+    
+    # Example text to tokenize
+    text = "The company's stock price increased by 5% after the announcement."
+
+    # Tokenize the text
+    inputs = tokenizer(text, return_tensors="pt")
+
+    # Print the tokenized input
+    print(inputs)

@@ -1,5 +1,5 @@
  # SQL database-specific configurations (Contains configuration data, no class here)
-database:
+postgresql_db:
   host: ${DB_HOST}
   port: ${DB_PORT}
   name: ${DB_NAME}
