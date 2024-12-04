@@ -1,1 +1,0 @@
-# get all sec filings using EDGAR API

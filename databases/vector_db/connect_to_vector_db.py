@@ -1,55 +1,56 @@
-# Class for vector database connection setup
-
 import os
 from dotenv import load_dotenv
 import logging
 from astrapy import DataAPIClient
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Load environment variables from .env file
+load_dotenv()
+
+# Initialize logger
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def connect_to_vector_db(keyspace):
-    """
-    Connect to the Astra vector database.
+class VectorDBConnection:   # Class for Astra DB connection setup
+ 
 
-    Parameters:
-    keyspace (str): The keyspace to connect to.
+    def __init__(self, keyspace):  # Constrcuter to initialize the class
+        self.keyspace = keyspace    # Initialize the keyspace attribute
+        self.astra_db_application_token = os.getenv('ASTRA_DB_TOKEN')   # Get the Astra DB application token from the environment
+        self.astra_db_api_endpoint = os.getenv('ASTRA_DB_ENDPOINT')    # Get the Astra DB API endpoint from the environment 
+        
+        # Debug statements to check environment variables
+        logger.info(f"ASTRA_DB_APPLICATION_TOKEN: {self.astra_db_application_token}")
+        logger.info(f"ASTRA_DB_API_ENDPOINT: {self.astra_db_api_endpoint}")
+        
+        if not self.astra_db_application_token or not self.astra_db_api_endpoint:
+            raise ValueError("Environment variables for Astra DB are missing")
+        
+        self.client = self._initialize_client()
+        self.db = self._connect_to_db()
 
-    Returns:
-    db: The connected database object.
-    """
-    # Load environment variables from .env file
-    load_dotenv()
-    logger.info("Environment variables loaded.")
+    def _initialize_client(self):
+        """Initialize the DataAPIClient."""
+        return DataAPIClient(self.astra_db_application_token)
 
-    # Access environment variables
-    astra_db_application_token = os.getenv('ASTRA_DB_APPLICATION_TOKEN')
-    astra_db_api_endpoint = os.getenv('ASTRA_DB_API_ENDPOINT')
+    def _connect_to_db(self):
+        """Connect to the vector database."""
+        return self.client.get_database(self.astra_db_api_endpoint)
 
-    # Validate environment variables
-    if not all([astra_db_application_token, astra_db_api_endpoint]):
-        logger.error("One or more required environment variables are missing.")
-        raise EnvironmentError("Missing required environment variables.")
+    def get_db(self):
+        """Return the connected database object."""
+        return self.db
 
-    logger.info("Environment variables accessed.")
+    def confirm_connection(self):
+        """Confirm the database connection."""
+        if self.db:
+            print("Successfully connected to the Astra DB.")
+        else:
+            print("Failed to connect to the Astra DB.")
 
-    try:
-        # Initialize the client
-        client = DataAPIClient(astra_db_application_token)
-        logger.info("DataAPIClient initialized.")
-
-        # Connect to vector_db
-        db = client.get_database_by_api_endpoint(astra_db_api_endpoint, keyspace=keyspace)
-        logger.info(f"Connected to vector_db with keyspace '{keyspace}'.")
-
-        return db
-    except Exception as e:
-        logger.error(f"Failed to connect to vector_db: {e}")
-        raise
-
-# Example usage
+# Usage example
 if __name__ == "__main__":
-    keyspace = "financial_data"  # Replace with your actual keyspace
-    db = connect_to_vector_db(keyspace)
-    logger.info(f"Connected to Astra DB: {db.list_collection_names()}")
+    keyspace = "financial_data"
+    vector_db_connection = VectorDBConnection(keyspace)
+    db = vector_db_connection.get_db()
+    logger.info(f"Connected to Astra DB: {db}")
+    vector_db_connection.confirm_connection()

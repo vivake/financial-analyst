@@ -1,12 +1,7 @@
 sec_analyst_project/
 │
 ├── main.py                     # Main entry point of the application (may not contain classes)
-│
-├── config/
-│   ├── config.yml              # Central YAML configuration file (Contains configuration data, no class here)
-│   ├── vector_db.yml           # Vector database-specific configurations (Contains configuration data, no class here)
-│   ├── sql_db.yml              # SQL database-specific configurations (Contains configuration data, no class here)
-│   ├── config.py               # Class for managing the configuration (Class: `Config`)
+│            # Class for managing the configuration (Class: `Config`)
 │
 ├── data/
 │   ├── sec_filings/
@@ -277,7 +272,7 @@ Summary of Steps:
 2. Set up environment variables in .env and configure .gitignore.
 3. Implement configuration management via config/config.py.
 4. Implement database connection classes for SQL and vector databases.
-5. Set up data handling and preprocessing logic for SEC filings.
+5. Set up data handling and preprocessing logic for raw data
 6. Implement embedding generation using FinBERT.
 7. Handle query parsing and routing in the query handler module.
 8. Integrate all modules in main.py and run the system.
