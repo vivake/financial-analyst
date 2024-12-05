@@ -1,65 +1,16 @@
 """
-This module provides functionality to generate TF-IDF embeddings for a collection of documents.
+This script generates embeddings using FinBERT.
 
-Classes:
-    EmbeddingGenerator: A class to handle the generation of TF-IDF embeddings.
+Functions:
+    load_finbert_model(model_name: str) -> BertModel:
+        Loads the FinBERT model specified by the model_name parameter.
 
-Usage Example:
+    preprocess_text(text: str) -> List[str]:
+        Preprocesses the input text by tokenizing and cleaning it.
+
+    generate_embeddings(text: str, model: BertModel, tokenizer: BertTokenizer) -> torch.Tensor:
+        Generates embeddings for the input text using the provided FinBERT model and tokenizer.
+
+    main():
+        Main function that loads the FinBERT model, preprocesses the input text, and generates embeddings.
 """
-"""
-A class used to generate TF-IDF embeddings for a list of documents.
-
-Attributes:
-    documents (list of str): A list of documents to generate embeddings for.
-    vectorizer (TfidfVectorizer): An instance of TfidfVectorizer from sklearn.
-
-Methods:
-    generate_embeddings():
-        Generates and returns the TF-IDF embeddings for the documents.
-"""
-class EmbeddingGenerator:
-    """
-    Constructs all the necessary attributes for the EmbeddingGenerator object.
-
-    Parameters:
-        documents (list of str): A list of documents to generate embeddings for.
-    """
-    def __init__(self, documents):
-        self.documents = documents
-        self.vectorizer = TfidfVectorizer()
-
-    """
-    Generates TF-IDF embeddings for the documents.
-
-    Returns:
-        numpy.ndarray: A 2D array where each row corresponds to the TF-IDF embedding of a document.
-    """
-    def generate_embeddings(self):
-        tfidf_matrix = self.vectorizer.fit_transform(self.documents)
-        return tfidf_matrix.toarray()
-
-# Example usage
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-
- # Class for handling embedding generation
-
-class EmbeddingGenerator:
-    def __init__(self, documents):
-        self.documents = documents
-        self.vectorizer = TfidfVectorizer()
-
-    def generate_embeddings(self):
-        tfidf_matrix = self.vectorizer.fit_transform(self.documents)
-        return tfidf_matrix.toarray()
-
-# Example usage
-if __name__ == "__main__":
-    documents = [
-        "This is a sample document.",
-        "This document is another example.",
-        "Yet another example of a document."
-    ]
-    generator = EmbeddingGenerator(documents)
-    embeddings = generator.generate_embeddings()
-    print(embeddings)
