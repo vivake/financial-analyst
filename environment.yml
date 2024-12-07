@@ -3,7 +3,7 @@ channels:
   - conda-forge
 dependencies:
   # Dependencies for PostgreSQL database
-  - python=3.8
+  - python=3.12
   - pandas
   - sqlalchemy
   - psycopg2
@@ -26,9 +26,23 @@ dependencies:
   - ipykernel
   - transformers
   - pip
+  - pytorch
   - pip:
     - joblib
     - scikit-learn
     - spacy
     - torch
     - textblob
+
+  # Dependencies for langchain tools for cleaning pdf and excel files 
+  - pdfminer.six
+  - pip:
+    - pymupdf
+    - langchain-astradb
+    - langchain-huggingface
+  - openpyxl
+  - xlrd
+  - xlwt
+  - xlsxwriter
+  - langchain-community
+  
