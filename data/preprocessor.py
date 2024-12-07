@@ -1,4 +1,6 @@
-# Import the necessary libraries
+# Import the necessary librarie
+# 
+from databases.db_connector import DbConnector
 
 # Model imports
 from transformers import BertTokenizer, BertModel   #  FinBERT model and tokenizer from the Hugging Face Transformers library
@@ -23,36 +25,11 @@ import json
 
 class PDFPreprocessor:
     def __init__(self):
-        # Load environment variables
-        load_dotenv()
-        self.astra_db_endpoint = os.getenv('ASTRA_DB_ENDPOINT')
-        self.astra_db_token = os.getenv('ASTRA_DB_TOKEN')
-        self.astra_db_id = os.getenv('ASTRA_DB_ID')
-        self.keyspace = os.getenv('ASTRA_DB_KEYSPACE')
-        self.collection = os.getenv('ASTRA_DB_COLLECTION_NAME')
+        # Step 1: Connect to Astra DB and initialize the FinBERT model and tokenizer
         
-        # Print the environment variables to verify they are loaded correctly
-        print("Astra DB API Endpoint:", self.astra_db_endpoint)
-        print("Astra DB Application Token:", self.astra_db_token)
-        print("Astra API Key:", self.astra_api_key)
-        print("Astra DB ID:", self.astra_db_id)
-        print("Keyspace:", self.keyspace)
-        print("Collection Name:", self.collection_name)
-        print("\n")
-        
-        
-         # Step 1: Connect to Astra DB and initialize the FinBERT model and tokenizer
-    
-         # Initialize the DataAPIClient with the application token
-        client = DataAPIClient(self.astra_db_token)
-
-        # Connect to the database using the API endpoint
-        db=client.get_database_by_api_endpoint(
-            api_endpoint=self.astra_db_endpoint,
-            keyspace=self.keyspace,
-        )
-        print(f"Connected to Astra DB: {db.list_collection_names()}")
-        print("\n")
+        db_connector = DbConnector(db_type="vector_db")  # Initialize the database connector
+        connection = db_connector.get_connection()
+        print(f"Connected to DB: {connection}")
         
         self.tokenizer = BertTokenizer.from_pretrained("ProsusAI/finbert")
         self.model = BertModel.from_pretrained("ProsusAI/finbert")

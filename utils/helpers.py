@@ -7,7 +7,7 @@ import os
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-def load_env_vars(env_file='.env'):
+def load_env_vars(env_file="/Users/vivakepandey/Python Projects/financial_analyst/.env"):
     """
     Load environment variables from a specified .env file and return them as a dictionary.
 
