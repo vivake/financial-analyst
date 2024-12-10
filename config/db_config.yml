@@ -1,0 +1,18 @@
+# Database configuration
+
+# db_config.yml
+
+postgres:
+  db_uri:  ${POSTGRES_DB_URI}
+  db_host: ${DB_HOST}
+  db_port: ${DB_PORT}
+  db_name: ${DB_NAME}
+  db_user: ${DB_USER}
+  db_password: ${DB_PASSWORD}
+
+vector_db:
+  astra_db_endpoint: ${ASTRA_DB_ENDPOINT}
+  astra_db_token: ${ASTRA_DB_TOKEN}
+  astra_db_id: ${ASTRA_DB_ID}
+  keyspace: ${ASTRA_DB_KEYSPACE}
+  astra_db_collection: ${ASTRA_DB_COLLECTION}

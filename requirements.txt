@@ -1,0 +1,29 @@
+# Conda packages
+python==3.12
+pandas
+sqlalchemy
+psycopg2
+python-dotenv
+pyyaml
+jupyter
+alembic
+ipython
+postgresql
+openai
+astrapy
+numpy
+nltk
+tqdm
+ipykernel
+transformers
+langchain-community
+pytest
+
+# Pip packages
+joblib
+scikit-learn
+spacy
+torch
+pymupdf
+langchain-astradb
+langchain-huggingface  
