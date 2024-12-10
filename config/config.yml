@@ -1,0 +1,53 @@
+# General project configuration
+
+project:
+  name: SEC Analyst Project
+  version: 1.0.0
+  description: >
+    A multi-modal system to extract, process, and analyze SEC filings, financial reports,
+    and other financial data using NLP and machine learning techniques.
+
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  log_file: /logs/project.log  # Path to log file
+
+pipelines:
+  extraction:
+    enabled: true
+    file_types: ["pdf", "xlsx"]
+    output_directory: data/raw
+  preprocessing:
+    enabled: true
+    output_directory: data/preprocessed
+  nlp:
+    enabled: true
+    models:
+      - name: spaCy
+        version: en_core_web_sm
+      - name: FinBERT
+        version: latest
+    output_directory: data/processed
+  embedding:
+    enabled: true
+    model: FinBERT
+    vector_storage: astra_db
+  retrieval:
+    enabled: true
+    vector_db: astra_db
+    sql_db: postgres
+  ui:
+    enabled: true
+    host: 0.0.0.0
+    port: 8080
+
+database:
+  sql: db_config.yml
+  vector: db_config.yml
+
+automation:
+  tool: Airflow
+  schedule: daily  # Options: hourly, daily, weekly
+
+environment:
+  python_version: 3.12.8
+  libraries: requirements.txt
